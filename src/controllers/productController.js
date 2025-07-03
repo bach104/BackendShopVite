@@ -83,7 +83,6 @@ exports.addProduct = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 exports.getProducts = async (req, res) => {
   try {
     let { page = 1, limit = 20, minPrice, maxPrice, category, material, season } = req.query;
@@ -166,12 +165,12 @@ exports.rateProduct = async (req, res) => {
       message: 'Đánh giá sao thành công.',
       starRatings: updatedProduct.starRatings,
     });
+    console.log("Updated product:", updatedProduct);
   } catch (error) {
     console.error('Lỗi đánh giá sao:', error.message);
     res.status(500).json({ error: error.message });
   }
 };
-
 exports.getProductRating = async (req, res) => {
   try {
     const { productId } = req.params;
@@ -191,8 +190,6 @@ exports.getProductRating = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
-
 exports.getProductsBySeason = async (req, res) => {
   try {
     const { season } = req.params;
@@ -219,7 +216,6 @@ exports.getProductsBySeason = async (req, res) => {
     res.status(500).json({ message: "Lỗi server", error: error.message });
   }
 };
-
 exports.getTopFeaturedProducts = async (req, res) => {
   try {
     const productsWithComments = await Product.aggregate([
@@ -364,7 +360,6 @@ exports.updateProduct = async (req, res) => {
     });
   }
 };
-
 exports.deleteProducts = async (req, res) => {
   try {
     if (!req.user || !req.user.isAdmin) {
