@@ -141,6 +141,7 @@ exports.login = async (req, res) => {
       },
       token
     });
+    console.log(user);
   } catch (error) {
     console.error('Lỗi đăng nhập:', error);
     res.status(500).json({ 
